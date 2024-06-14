@@ -1,0 +1,26 @@
+# Creating a  Virtual Environment
+py -m venv venv
+
+# Activating the Virtual Environment
+venv\Scripts\activate.bat
+
+# Installing Django
+pip install django
+
+# Installing Pillow
+pip install pillow
+
+# Installing some dependencies
+pip install django-crispy-forms
+
+# Admin command
+django-admin startproject afyaboraproject
+
+# Creating the miniapps. It's gonna handle user authentication, login logout
+python manage.py startapp stackusers 
+
+# It's gonna handle our questions 
+python manage.py startapp stackbase 
+
+# Starting my server
+python manage.py runserver

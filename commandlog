@@ -24,3 +24,16 @@ python manage.py startapp stackbase
 
 # Starting my server
 python manage.py runserver
+
+# removed from line 12 home.html file
+{% url 'stackbase:question-lists' %}
+
+# removed reference links from heros options
+
+# make migrations
+python manage.py makemigrations
+
+python manage.py migrate
+
+# creating a superuser admin
+python manage.py createsuperuser

@@ -298,21 +298,21 @@ a{
           <!-- Login Form -->
           <!-- <form method="POST">
               {% csrf_token %}
-              {{form|crispy}}
+              {{form}}
               {{p_reg_form.as_p}}
             <input type="submit" class="fadeIn fourth" value="Sign Up">
           </form> -->
 
           <form action="" method="POST">
             {% csrf_token %}
-            {{form|crispy}}
+            {{form}}
             <input type="submit" class="fadeIn fourth" value="Sign Up">
 
           </form>
       
           <!-- Remind Passowrd -->
           <div id="formFooter">
-            <p>Already have an account? <a class="underlineHover" href="{% url 'login' %}">Login </a></p>
+            <p>Already have an account? <a class="underlineHover" href="">Login </a></p>
           </div>
       
         </div>

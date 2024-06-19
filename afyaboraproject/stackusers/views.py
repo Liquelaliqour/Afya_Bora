@@ -19,3 +19,7 @@ def register(request):
         form = UserRegistrationForm()
         
     return render(request, 'stackusers/register.html', {'form': form})
+
+@login_required
+def profile(request):
+    return render(request, 'stackusers/profile.html')

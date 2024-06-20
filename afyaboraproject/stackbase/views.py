@@ -13,4 +13,5 @@ def about(request):
 #CRUD FUNCTIONS
 class QuestionListView(ListView):
     model = Question
-    
+    context_object_name = 'questions'
+    ordering = ['-date_created']

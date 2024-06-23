@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView, CreateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from .models import Question
 
 
@@ -29,3 +29,18 @@ class QuestionCreateView(CreateView):
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super().form_valid(form)
+    
+class QuestionUpdateView(UpdateView):
+    model = Question
+    fields = ['title', 'content']
+    
+    def test_func(self):
+        question = self.get_object()
+        if self.request.user == question.user:
+            return True
+        else:
+            return False
+
+    #def form_valid(self, form):
+        #form.instance.user = self.request.user
+        #return super().form_valid(form)

@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from .models import Question
+from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
 
 
 # Create your views here.
@@ -30,7 +31,7 @@ class QuestionCreateView(CreateView):
         form.instance.user = self.request.user
         return super().form_valid(form)
     
-class QuestionUpdateView(UpdateView):
+class QuestionUpdateView(UserPassesTestMixin, UpdateView):
     model = Question
     fields = ['title', 'content']
     

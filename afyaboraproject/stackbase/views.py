@@ -22,7 +22,7 @@ class QuestionDetailView(DetailView):
     context_object_name = 'question'
     ordering = ['-date_created']
 
-class QuestionCreateView(CreateView):
+class QuestionCreateView(LoginRequiredMixin, CreateView):
     model = Question
     fields = ['title', 'content']
     
@@ -31,7 +31,7 @@ class QuestionCreateView(CreateView):
         form.instance.user = self.request.user
         return super().form_valid(form)
     
-class QuestionUpdateView(UserPassesTestMixin, UpdateView):
+class QuestionUpdateView(UserPassesTestMixin, LoginRequiredMixin, UpdateView):
     model = Question
     fields = ['title', 'content']
     
@@ -41,7 +41,7 @@ class QuestionUpdateView(UserPassesTestMixin, UpdateView):
             return True
         return False
 
-class QuestionDeleteView(UserPassesTestMixin, DeleteView):
+class QuestionDeleteView(UserPassesTestMixin, LoginRequiredMixin, DeleteView):
     model = Question
     context_object_name = 'question'
     success_url = '/'

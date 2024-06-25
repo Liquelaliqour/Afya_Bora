@@ -1,8 +1,9 @@
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from .models import Question
+from .models import Question, Comment
 from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
-
+from .forms import CommentForm
+from django.urls import reverse, reverse_lazy
 
 # Create your views here.
 def home(request):
@@ -51,3 +52,13 @@ class QuestionDeleteView(UserPassesTestMixin, LoginRequiredMixin, DeleteView):
         if self.request.user == question.user:
             return True
         return False
+    
+class CommentDetailView(CreateView):
+    model = Comment
+    form_class = CommentForm
+    template_name = 'stackkbase/question-detail.html'
+
+    def form_valid(self, form):
+        form.instance.question_id = self.kwargs['pk']
+        return super().form_valid(form)
+    success_url = reverse_lazy('stackbase:question-detail')

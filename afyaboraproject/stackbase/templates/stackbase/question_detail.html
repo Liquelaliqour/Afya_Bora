@@ -159,7 +159,7 @@
                         {% endif %}
                     </form> -->
                     
-                    <a class="btn btn-outline-primary" id="fa" href="" style="text-decoration: none;">Answer Question</a>
+                    <a class="btn btn-outline-primary" id="fa" href="{% url 'stackbase:question-comment'  question.id%}" style="text-decoration: none;">Answer Question</a>
                     <a style="text-decoration: none; " class="btn btn-outline-success" href="{% url 'stackbase:question-update'  question.id%}">&#x270E;</a>
                     <a style="text-decoration: none; " class="btn btn-outline-danger" href="{% url 'stackbase:question-delete'  question.id%}">&#x2716;</a>
                     <a style="text-decoration: none; " class="btn btn-outline-secondary" href="{% url 'stackbase:question-lists' %}">&#x21a9;</a>

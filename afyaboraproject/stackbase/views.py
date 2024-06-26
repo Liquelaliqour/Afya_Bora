@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.http import HttpResponseRedirect
 from .models import Question, Comment
 from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
 from .forms import CommentForm
@@ -13,6 +14,17 @@ def about(request):
     return render(request, 'about.html')
 
 #CRUD FUNCTIONS
+
+def like_view(request, pk):
+    post = get_object_or_404(Question, id=request.POST.get('question_id'))
+    liked = False
+    if post.likes.filter(id=request.user.id).exists():
+        post.likes.remove(request.user)
+        liked = False
+    else:
+        post.likes.add(request.user)
+        liked = True
+    return HttpResponseRedirect(reverse('stackbase:question-detail', args=[str(pk)]))
 class QuestionListView(ListView):
     model = Question
     context_object_name = 'questions'
@@ -23,6 +35,16 @@ class QuestionDetailView(DetailView):
     context_object_name = 'question'
     ordering = ['-date_created']
 
+    def get_context_data(self, *args, **kwargs):
+        context = super(QuestionDetailView, self).get_context_data()
+        something = get_object_or_404(Question, id=self.kwargs['pk'])
+        total_likes = something.total_likes()
+        liked=False
+        if something.likes.filter(id=self.request.user.id).exists():
+            liked = True
+        context['total_likes'] = total_likes
+        context['liked'] = liked
+        return context
 class QuestionCreateView(LoginRequiredMixin, CreateView):
     model = Question
     fields = ['title', 'content']

@@ -97,7 +97,7 @@
                     <hr>
                     <h6 id="fh6" style="font-size: 10px; font-style: italic; color: rgb(155, 155, 155); text-align: right;">Asked By: <a href="{% url 'profile' %}">{{ object.user|title }}</a>&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp; On: {{ object.date_created|date:"j F, Y" }}</h6>
                     <br>
-                        <form action="" method="POST">
+                        <form action="{% url 'stackbase:like_post' object.pk %}" method="POST">
                             {% csrf_token %}
                             {% if user.is_authenticated %}
                                 {% if liked %}

@@ -8,6 +8,7 @@ class Question(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=1000)
     content = models.TextField(null=True, blank=True)
+    likes = models.ManyToManyField(User, related_name='question_post')
     date_created = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
@@ -15,7 +16,9 @@ class Question(models.Model):
     
     def get_absolute_url(self):
         return reverse('stackbase:question-detail', kwargs={'pk':self.pk})
-
+    
+    def total_likes(self):
+        return self.likes.count()
 class Comment(models.Model):
     question = models.ForeignKey(Question, related_name='comment', on_delete=models.CASCADE)
     name = models.CharField(max_length=1000)

@@ -59,11 +59,9 @@
 
             <a href="" class="nav-icon">
                 <i class="fab fa-stack-overflow"></i>
-                <a href="{% url 'stackbase:home' %}" style="text-decoration: none; color: black;"><div class="nav-icon-text">stack <span class="nav-bold-text">overflow</span></a>
-                <!-- <div class="nav-icon-text">stack <span class="nav-bold-text">overflow</span> -->
-
-                
-                </div>
+                <a href="{% url 'stackbase:home' %}" style="text-decoration: none; color: black;">
+                    <div class="nav-icon-text">Afya <span class="nav-bold-text">Bora</span></div>
+                </a>
             </a>
         </div>
         <div class="nav-base-links">
@@ -106,7 +104,7 @@
                 <i class="fas fa-search"></i>
             </div>
             {% if user.is_authenticated %}
-                <a href="" class="btn btn-login">Profile</a>
+                <a href="{% url 'login' %}" class="btn btn-login">Profile</a>
                 <a href="{% url 'logout'%}" class="btn btn-register">Logout</a> 
             {% else %}
                 <a href="{% url 'login' %}" class="btn btn-login">Log in</a>

@@ -14,7 +14,7 @@ def register(request):
             form.save()
             username = form.cleaned_data.get('username')
             messages.success(request, f'Account successfully created for {username}! Login Now')
-            return render(request, 'stackbase:home')
+            return redirect('stackbase:home')
     else:
         form = UserRegistrationForm()
         

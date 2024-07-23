@@ -28,7 +28,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['afyabora.liquelaliqour.tech', '100.26.218.17', '127.0.0.1']
 
@@ -143,3 +143,12 @@ LOGIN_REDIRECT_URL = 'stackbase:home'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 LOGIN_URL = 'login'
+
+# Email configuration
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'  # Replace with your email provider's SMTP server
+EMAIL_PORT = 587  # Or another port number (e.g., 465 for SSL)
+EMAIL_USE_TLS = True  # Use TLS (or EMAIL_USE_SSL = True for SSL)
+EMAIL_HOST_USER = 'lewismomanyi34@gmail.com'  # Your email address
+EMAIL_HOST_PASSWORD = 'bwqd tnwj dsvv iaod' # Your email password
+#DEFAULT_FROM_EMAIL = 'webmaster@example.com'  # Your "from" email address

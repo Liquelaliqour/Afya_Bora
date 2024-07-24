@@ -30,6 +30,10 @@ urlpatterns = [
     path('login/', auth_views.LoginView.as_view(template_name='stackusers/login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(template_name='stackusers/logout.html'), name='logout'),
 
+    # Terms and Policy
+    path('terms/', user_view.terms_and_conditions, name='terms_and_conditions'),
+    path('privacy/', user_view.privacy_policy, name='privacy_policy'),
+    
     # Profile System
     path('profile/', user_view.profile, name = 'profile'),
     path('profile_update/', user_view.profile_update, name = 'profile_update'),

@@ -20,6 +20,12 @@ def register(request):
         
     return render(request, 'stackusers/register.html', {'form': form})
 
+def terms_and_conditions(request):
+    return render(request, 'stackusers/terms_and_conditions.html')
+
+def privacy_policy(request):
+    return render(request, 'stackusers/privacy_policy.html')
+
 @login_required
 def profile(request):
     return render(request, 'stackusers/profile.html')

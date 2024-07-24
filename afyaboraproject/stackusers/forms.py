@@ -6,6 +6,7 @@ from django.db.models import fields
 from .models import Profile
 
 class UserRegistrationForm(UserCreationForm):
+    accept_terms = forms.BooleanField(required=True, label="I accept the Terms and Conditions and Privacy Policy")
     email = models.EmailField()
 
     class Meta:

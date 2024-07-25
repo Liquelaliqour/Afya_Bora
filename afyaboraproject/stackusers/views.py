@@ -4,8 +4,6 @@ from django.contrib import messages
 from .forms import UserRegistrationForm
 from django.contrib.auth.decorators import login_required
 from .forms import ProfileUpdateForm, UserUpdateForm
-
-
 # Create your views here.
 def register(request):
     if request.method == 'POST':
@@ -17,7 +15,7 @@ def register(request):
             return redirect('stackbase:home')
     else:
         form = UserRegistrationForm()
-        
+
     return render(request, 'stackusers/register.html', {'form': form})
 
 def terms_and_conditions(request):
@@ -34,16 +32,16 @@ def profile(request):
 def profile_update(request):
     if request.method == 'POST':
         u_form = UserUpdateForm(request.POST, instance=request.user)
-        p_form = ProfileUpdateForm(request.POST, request.FILES ,instance=request.user.profile)
+        p_form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
 
         if u_form.is_valid() and p_form.is_valid():
             u_form.save()
             p_form.save()
-            messages.success(request, f'Account Updated Successfully!')
+            messages.success(request, 'Account Updated Successfully!')
             return redirect('profile')
-        else:
-            u_form = UserUpdateForm(instance=request.user)
-            p_form = ProfileUpdateForm(instance=request.user)
+    else:
+        u_form = UserUpdateForm(instance=request.user)
+        p_form = ProfileUpdateForm(instance=request.user.profile)
 
     context = {
         'u_form': u_form,
@@ -51,3 +49,4 @@ def profile_update(request):
     }
 
     return render(request, 'stackusers/profile_update.html', context)
+
